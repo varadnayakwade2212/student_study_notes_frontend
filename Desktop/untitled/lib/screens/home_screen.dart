@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'subjects_screen.dart';
 import 'my_notes_screen.dart';
+import 'profile_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -11,6 +12,24 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Student Study Notes'),
         centerTitle: true,
+
+        // Profile Icon
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.account_circle,
+              size: 30,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProfileScreen(),
+                ),
+              );
+            },
+          ),
+        ],
       ),
 
       body: Padding(
@@ -47,22 +66,18 @@ class HomeScreen extends StatelessWidget {
                   size: 35,
                   color: Colors.blue,
                 ),
-
                 title: const Text(
                   'My Notes',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-
                 subtitle: const Text(
                   'View your study notes',
                 ),
-
                 trailing: const Icon(
                   Icons.arrow_forward_ios,
                 ),
-
                 onTap: () {
                   Navigator.push(
                     context,
@@ -84,22 +99,18 @@ class HomeScreen extends StatelessWidget {
                   size: 35,
                   color: Colors.green,
                 ),
-
                 title: const Text(
                   'Subjects',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-
                 subtitle: const Text(
                   'Select your subject',
                 ),
-
                 trailing: const Icon(
                   Icons.arrow_forward_ios,
                 ),
-
                 onTap: () {
                   Navigator.push(
                     context,
