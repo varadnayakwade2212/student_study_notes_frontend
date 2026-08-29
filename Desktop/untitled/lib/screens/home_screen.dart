@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'subjects_screen.dart';
 import 'my_notes_screen.dart';
+import 'study_reminder_screen.dart';
 import 'profile_screen.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  final Function(bool)? onThemeChanged;
+
+  const HomeScreen({
+    super.key,
+    this.onThemeChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,18 +19,18 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Student Study Notes'),
         centerTitle: true,
 
-        // Profile Icon
+        // Profile button
         actions: [
           IconButton(
-            icon: const Icon(
-              Icons.account_circle,
-              size: 30,
-            ),
+            icon: const Icon(Icons.person),
+            tooltip: 'Profile',
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ProfileScreen(),
+                  builder: (context) => ProfileScreen(
+                    onThemeChanged: onThemeChanged,
+                  ),
                 ),
               );
             },
@@ -34,10 +40,12 @@ class HomeScreen extends StatelessWidget {
 
       body: Padding(
         padding: const EdgeInsets.all(20),
+
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
+            // Welcome
             const Text(
               'Welcome Student 👋',
               style: TextStyle(
@@ -66,23 +74,28 @@ class HomeScreen extends StatelessWidget {
                   size: 35,
                   color: Colors.blue,
                 ),
+
                 title: const Text(
                   'My Notes',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+
                 subtitle: const Text(
                   'View your study notes',
                 ),
+
                 trailing: const Icon(
                   Icons.arrow_forward_ios,
                 ),
+
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const MyNotesScreen(),
+                      builder: (context) =>
+                      const MyNotesScreen(),
                     ),
                   );
                 },
@@ -99,23 +112,66 @@ class HomeScreen extends StatelessWidget {
                   size: 35,
                   color: Colors.green,
                 ),
+
                 title: const Text(
                   'Subjects',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+
                 subtitle: const Text(
                   'Select your subject',
                 ),
+
                 trailing: const Icon(
                   Icons.arrow_forward_ios,
                 ),
+
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const SubjectsScreen(),
+                      builder: (context) =>
+                      const SubjectsScreen(),
+                    ),
+                  );
+                },
+              ),
+            ),
+
+            const SizedBox(height: 15),
+
+            // Study Reminder
+            Card(
+              child: ListTile(
+                leading: const Icon(
+                  Icons.alarm,
+                  size: 35,
+                  color: Colors.orange,
+                ),
+
+                title: const Text(
+                  'Study Reminder',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+
+                subtitle: const Text(
+                  'Set a reminder for your study',
+                ),
+
+                trailing: const Icon(
+                  Icons.arrow_forward_ios,
+                ),
+
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                      const StudyReminderScreen(),
                     ),
                   );
                 },
